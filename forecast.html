@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <!-- Web Tab Logo -->
+    <link href="./images/weblogo.png" rel="icon">
+    <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous"
+    />
+    <!-- BootStrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="./css/forecast.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark border-bottom border-body sticky-top" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="./index.html">
+                <img src="./images/logo.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top" />
+                Weather
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="./index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="./history.html">History</a></li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" id="recent" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Recent<i class="bi bi-caret-down-fill ms-1"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="./temperature.html">Temperature</a></li>
+                            <li><a class="dropdown-item" href="./humidity.html">Humidity</a></li>
+                            <li><a class="dropdown-item" href="./wind.html">Wind Speed</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="./forecast.html">Forecast App</a></li>
+                </ul>
+    
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown dropstart">
+                      <a class="nav-link dropdown-toggle" id="resources" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Resources <i class="bi bi-caret-left-fill d-lg-inline d-none"></i><i class="bi bi-caret-down-fill d-lg-none"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://flagpedia.net/" target="_blank">Flag API</a></li>
+                            <li><a class="dropdown-item" href="https://open-meteo.com/en/docs/" target="_blank">Weather API</a></li>
+                            <li><a class="dropdown-item" href="https://www.chartjs.org/" target="_blank">Chart.js</a></li>
+                        </ul>
+                    </li>
+                </ul>
+    
+            </div>
+        </div>
+    </nav>
+   
+    <div class="container-fluid text-center">
+
+        <div id="current-temp" class="row text-white mt-2 mx-auto" >
+
+            <div id="main" class="shadow col-md-3 rounded-4 mt-2 d-flex justify-content-around">
+
+                <div class="d-flex align-items-center" >
+                    <div class="container">
+                        <div class="row row-cols-3 align-items-center pt-2">
+                            <p class="col-md-12" id="day"></p>
+                            <p class="col-md-12" id="date"></p>
+                            <p class="col-md-12" id="temp"></p>
+                        </div>
+                        <div class="row row-cols-3">
+                            <p class="col-md-12" id="feels-like"></p>
+                            <p class="col-md-12" id="temp-max"></p>
+                            <p class="col-md-12" id="temp-min"></p>
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+ 
+         
+            <div id="location-weather" class=" col-md-6 row m-0 rounded-4 mt-2 position-relative">
+                
+                <div id="search-container" class="d-flex justify-content-center my-2">
+                    <img id="country" class="mt-2 me-2"></img>
+                    <form class="d-inline-flex" id="location-form">
+                        <input type="text" id="location-input" class="edit-input form-control" value="Tampere">
+                        <button type="submit" id="submit-button" class="ms-1 btn btn-primary"><i class="bi bi-geo-alt-fill"></i></button>
+                    </form>
+                   
+                </div>
+                <div class="not-found"><h1 class="not-found">City not found.</h1><p class="not-found">Try again with another city name.</p></div>
+
+                <div id="weather-image-container" class="d-flex align-items-center justify-content-center position-relative">
+                    <img src="./images/cloud.png" class="slide abs img-fluid" id="cloud">
+                    <img src="./images/dcloud-1.png" class="dcloud slide abs img-fluid">
+                    <img src="./images/dcloud-2.png" class="dcloud up-down abs img-fluid">
+                    <img src="./images/lightning.png" class="up-down abs img-fluid" id="lightning">
+                    <img src="./images/mist.png" class="mist slide abs img-fluid">
+                    <img src="./images/mist2.png" class="mist up-down abs img-fluid">
+                    <img src="./images/moon.png" class= " abs img-fluid" id="moon" >
+                    <img src="./images/moon-clear.png" class= "abs img-fluid" id="moon-clear" >
+                    <img src="./images/rain1.png" class="rain up-down abs img-fluid">
+                    <img src="./images/rain2.png" class="rain up-down abs img-fluid">
+                    <img src="./images/snow1.png" class="snow up-down abs img-fluid">
+                    <img src="./images/snow2.png" class="snow up-down abs img-fluid">
+                    <img src="./images/sun.png" class= " abs img-fluid" id="sun">
+                    <img src="./images/sun-clear.png" class= " abs img-fluid" id="sun-clear">
+                    <img src="./images/dust1.png" class="dust slide abs img-fluid">
+                    <img src="./images/dust2.png" class="dust up-down abs img-fluid">
+                    <img src="./images/cloud-windy.png" class="slide abs img-fluid" id="windy-cloud">
+                    <img src="./images/windy.png" class="slide abs img-fluid" id="windy">
+                    <img src="./images/thunder.png" class="slide abs img-fluid" id="thunder">
+                </div>
+
+                <p id="weather-desc" class="align-self-end text-capitalize"></p>
+            </div>
+
+            <div id="misc" class="shadow col-md-3 rounded-4 mt-2 px-0 d-flex justify-content-center">
+
+                    <div class="container-fluid align-self-center justify-content-center">
+
+                        <div class="row row-cols-3 pt-2">
+                            <div class="row col-md-12 mx-0 px-0">
+                                <p class="col-md-6" id="h-name"></p>
+                                <p class="col-md-6" id="humidity"></p>
+                            </div>
+                            <div class="row col-md-12 mx-0 px-0">
+                                <p class="col-md-6" id="p-name"></p>
+                                <p class="col-md-6" id="pressure"></p>
+                            </div>
+                            <div class="row col-md-12 mx-0 px-0">
+                                <p class="col-md-6" id="prec-name"></p>
+                                <p class="col-md-6" id="prec-prob"></p>
+                            </div>
+                        </div>
+
+                        <div class="row row-cols-3">
+                            <div class="row col-md-12 mx-0 px-0">
+                                <p class="col-md-6" id="w-name"></p>
+                                <p class="col-md-6" id="wind-speed"></p>
+                            </div>
+                            <div class="row col-md-12 mx-0 px-0">
+                                <p class="col-md-6" id="sr-name"></p>
+                                <p class="col-md-6" id="sunrise"></p>
+                            </div>
+                            <div class="row col-md-12 mx-0 px-0">
+                                <p class="col-md-6" id="ss-name"></p>
+                                <p class="col-md-6" id="sunset"></p>
+                            </div>
+                        </div> 
+
+                    </div>
+
+            </div>
+        </div>
+
+        <div id="hourly-forecast" class="my-2 p-2 rounded-4" style="width: 100%"></div>
+
+        <div id="daily-forecast" class="overflow-x-scroll rounded-4 mb-2" style="width: 100%">
+            <div id="forecast" class="my-2 p-2 rounded-4"></div>
+            <div class="shadow rounded-4 mt-2 ps-0 container-fluid" style="height: 500px; max-height: 50vh; width: 100%">
+                <canvas id="forecast-chart" style="width: 100%; height: 100%;"></canvas>
+            </div>
+        </div>
+
+    </div>
+
+    <footer class=" d-flex justify-content-evenly bg-dark border-top border-body py-2">
+        <a class="link-light link-offset-2 link-offset-3-hover link-underline link-underline-opacity-0 link-underline-opacity-75-hover" href="https://yaknee.github.io/" target="_blank">&copy; Jani O'Connell 2024</a>
+    </footer>
+  
+    <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+    crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="./js/weather-codes.js"></script>
+    <script src="./js/forecast.js"></script>
+    <script>getInputLocation()</script>
+</body>
+</html>
