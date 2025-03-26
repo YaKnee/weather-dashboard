@@ -1,2 +1,2 @@
 # weather-dashboard
-Weather dashboard that allows you to view historical and forecast weather data of any city
+Weather dashboard that presents historical and forecast weather data and statistics to users in an interactive and informative way, utilizing the Open-Meteo's API.
